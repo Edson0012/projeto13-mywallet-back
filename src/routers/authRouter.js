@@ -7,7 +7,7 @@ import { validateSchema } from '../middlewares/validateSchema.js';
 const router = Router();
 
 router.post('/sign-up', validateSchema(signUpSchema), signUp)
-router.post('/sign-in', validateSchema(signInSchema), signIn)
+router.post('/', validateSchema(signInSchema), signIn)
 
 
 export default router

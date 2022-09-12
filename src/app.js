@@ -9,8 +9,8 @@ const app = express();
 app.use(cors())
 app.use(express.json())
 
-app.use(authRouter)
-app.use(transactionRouter)
+app.use(authRouter);
+app.use(transactionRouter);
 
 const PORT = process.env.PORT
 app.listen(PORT || 5000, () => console.log(`server listen on port ${PORT}`))

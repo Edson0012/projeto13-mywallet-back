@@ -38,12 +38,13 @@ export async function signIn(req, res) {
         const token = uuid();
         const email = user.email;
         const name = user.name;
+        const balance = user.balance
         await db.collection("sessions").insertOne({
           email,
           token,
         });
 
-       return res.status(200).send({email, token, name });
+       return res.status(200).send({email, token, name, balance });
       } else {
         return res.status(401).send("Email ou senha incorretos!");
       }
