@@ -20,9 +20,8 @@ export async function signUp (req , res){
                 name: user.name,
                 email: user.email,
                 password: passwordHash,
+                balance: 0,
         })
-
-        console.log(passwordHash)
 
         return res.sendStatus(201)
     }catch(err){
@@ -35,21 +34,22 @@ export async function signIn(req, res) {
     try {
       const { email, password } = req.body;
       const user = await db.collection("account").findOne({ email });
-        console.log(user)
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = uuid();
         const email = user.email;
-  
+        const name = user.name;
         await db.collection("sessions").insertOne({
           email,
           token,
         });
-       return res.status(200).send({email, token });
+
+       return res.status(200).send({email, token, name });
       } else {
         return res.status(401).send("Email ou senha incorretos!");
       }
     } catch (error) {
-      console.error(error);
       return res.sendStatus(500);
     }
   }
+
+  

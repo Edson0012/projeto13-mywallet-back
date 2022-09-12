@@ -9,4 +9,5 @@ const router = Router();
 router.post('/sign-up', validateSchema(signUpSchema), signUp)
 router.post('/sign-in', validateSchema(signInSchema), signIn)
 
+
 export default router
